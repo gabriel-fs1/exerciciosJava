@@ -51,7 +51,7 @@ public class Aluno {
                 case 1:
                     System.out.println("Digite o nome do aluno:");
                     String nome = scanner.nextLine();
-                    System.out.println("Digite a nota do aluno:");
+                    System.out.println("Digite a nota final do aluno:");
                     double nota = scanner.nextDouble();
                     scanner.nextLine();
 
