@@ -3,7 +3,7 @@ package ex30;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Aluno {
 
@@ -29,89 +29,50 @@ public class Aluno {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         Map<String, List<Aluno>> status = new HashMap<>();
 
-        int opcao = -1;
-        while (opcao != 0) {
-            System.out.println("O que deseja fazer?:");
-            System.out.println("0 - Sair");
-            System.out.println("1 - Adicionar Aluno e nota");
-            System.out.println("2 - Listar Aprovados");
-            System.out.println("3 - Listar Recuperação");
-            System.out.println("4 - Listar Reprovados");
+        List<Aluno> aprovados = new ArrayList<>();
+        List<Aluno> reprovados = new ArrayList<>();
+        List<Aluno> recuperacao = new ArrayList<>();
 
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+        List<Aluno> alunos = new ArrayList<>();
+        alunos.add(new Aluno("Diogo", 9.5));
+        alunos.add(new Aluno("Davi", 6.0));
+        alunos.add(new Aluno("Ana", 8.5));
+        alunos.add(new Aluno("Bruno", 7.0));
+        alunos.add(new Aluno("Eduardo", 8.0));
+        alunos.add(new Aluno("Maria", 5.0));
+        alunos.add(new Aluno("Joao", 1.0));
+        alunos.add(new Aluno("Gabriel", 2.0));
 
-            switch (opcao) {
-                case 0:
-                    System.out.println("Saindo...");
-                    break;
-                case 1:
-                    System.out.println("Digite o nome do aluno:");
-                    String nome = scanner.nextLine();
-                    System.out.println("Digite a nota final do aluno:");
-                    double nota = scanner.nextDouble();
-                    scanner.nextLine();
 
-                    String categoria;
-                    if (nota >= 7.0) {
-                        categoria = "Aprovados";
-                    } else if (nota >= 5.0) {
-                        categoria = "Recuperação";
-                    } else {
-                        categoria = "Reprovados";
-                    }
-
-                    List<Aluno> lista = status.get(categoria);
-                    if (lista == null) {
-                        lista = new java.util.ArrayList<>();
-                        status.put(categoria, lista);
-                    }
-                    lista.add(new Aluno(nome, nota));
-                    break;
-                case 2:
-                    System.out.println("\nAprovados:\n");
-                    List<Aluno> aprovados = status.get("Aprovados");
-                    if (aprovados != null) {
-                        for (Aluno aluno : aprovados) {
-                            System.out.println(aluno);
-                        }
-                        System.out.println("\n");
-                    } else {
-                        System.out.println("Nenhum aluno aprovado.\n");
-                    }
-                    break;
-                case 3:
-                    System.out.println("\nRecuperação:\n");
-                    List<Aluno> recuperacao = status.get("Recuperação");
-                    if (recuperacao != null) {
-                        for (Aluno aluno : recuperacao) {
-                            System.out.println(aluno);
-                        }
-                        System.out.println("\n");
-                    } else {
-                        System.out.println("Nenhum aluno em recuperação.\n");
-                    }
-                    break;
-                case 4:
-                    System.out.println("\nReprovados:\n");
-                    List<Aluno> reprovados = status.get("Reprovados");
-                    if (reprovados != null) {
-                        for (Aluno aluno : reprovados) {
-                            System.out.println(aluno);
-                        }
-                        System.out.println("\n");
-                    } else {
-                        System.out.println("Nenhum aluno reprovado.\n");
-                    }
-                    break;
-                default:
-                    System.out.println("\nOpção inválida!\n");
+        for (Aluno aluno : alunos) {
+            if (aluno.getNota() >= 7) {
+                aprovados.add(aluno);
+            } else if (aluno.getNota() >= 5 && aluno.getNota() < 7) {
+                recuperacao.add(aluno);
+            } else {
+                reprovados.add(aluno);
             }
         }
 
-        scanner.close();
+        status.put("Aprovado", aprovados);
+        status.put("Recuperação", recuperacao);
+        status.put("Reprovado", reprovados);
+
+        System.out.println("Alunos Aprovados:");
+        for (Aluno aluno : status.get("Aprovado")) {
+            System.out.println(aluno);
+        }
+
+        System.out.println("\nAlunos em Recuperação:");
+        for (Aluno aluno : status.get("Recuperação")) {
+            System.out.println(aluno);
+        }
+
+        System.out.println("\nAlunos Reprovados:");
+        for (Aluno aluno : status.get("Reprovado")) {
+            System.out.println(aluno);
+        }
     }
 }
