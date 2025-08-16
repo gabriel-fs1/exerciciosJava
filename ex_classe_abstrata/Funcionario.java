@@ -9,12 +9,11 @@ public class Funcionario extends Pessoa {
         this.salario = salario;
     }
 
-
-    public Float getSalario() {
-        return salario;
-    }
-
     public void setSalario(Float salario) {
+
+        if (salario <= 0) {
+            throw new IllegalArgumentException("Salário não pode ser negativo nem zero.");
+        }
         this.salario = salario;
     }
 
@@ -25,7 +24,7 @@ public class Funcionario extends Pessoa {
 
     @Override
     public String imprimeDados() {
-        return String.format("Nome: %s\nNascimento: %s\nSalário: %.2f",
+        return String.format("Nome: %s\nNascimento: %s\nSalário (com desconto): %.2f",
                 nome, nascimento.toString(), calculaImposto());
     }
     

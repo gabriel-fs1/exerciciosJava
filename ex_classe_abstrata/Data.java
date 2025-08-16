@@ -12,27 +12,24 @@ public class Data {
         this.ano = ano;
     }
 
-    public int getDia() {
-        return dia;
-    }
-
     public void setDia(int dia) {
+        if (dia < 1 || dia > 31) {
+            throw new IllegalArgumentException("Dia inválido. Deve ser entre 1 e 31.");
+        }
         this.dia = dia;
     }
 
-    public int getMes() {
-        return mes;
-    }
-
     public void setMes(int mes) {
+        if (mes < 1 || mes > 12) {
+            throw new IllegalArgumentException("Mês inválido. Deve ser entre 1 e 12.");
+        }
         this.mes = mes;
     }
 
-    public int getAno() {
-        return ano;
-    }
-
     public void setAno(int ano) {
+        if (ano < 0) {
+            throw new IllegalArgumentException("Ano inválido. Deve ser um número positivo.");
+        }
         this.ano = ano;
     }
 

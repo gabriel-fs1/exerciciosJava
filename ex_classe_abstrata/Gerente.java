@@ -9,16 +9,6 @@ public class Gerente extends Funcionario{
         this.area = area;
     }
 
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    
-
     @Override
     public Float calculaImposto() {
         salario = salario - (salario * 0.5f);
@@ -27,7 +17,7 @@ public class Gerente extends Funcionario{
 
     @Override
     public String imprimeDados() {
-        return String.format("Nome: %s\nNascimento: %s\nSalário: %.2f\nÁrea: %s",
+        return String.format("Nome: %s\nNascimento: %s\nSalário (com desconto): %.2f\nÁrea: %s",
                 nome, nascimento.toString(), calculaImposto(), area);
     }
     

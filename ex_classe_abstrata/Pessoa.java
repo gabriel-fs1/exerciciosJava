@@ -9,14 +9,6 @@ public abstract class Pessoa {
         this.nome = nome;
         this.nascimento = nascimento;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public Data getNascimento() {
-        return nascimento;
-    }
     
     public abstract String imprimeDados();
 
