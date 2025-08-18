@@ -2,12 +2,20 @@ package ex34_vcRiquinho;
 
 public class RendaVariavel extends ProdutosFinanceiros  {
 
-    public RendaVariavel(String nome, String descricao) {
+    private double rendimentoMensalEsperado;
+    
+    public RendaVariavel(String nome, String descricao, double rendimentoMensalEsperado) {
         super(nome, descricao);
+        this.rendimentoMensalEsperado = rendimentoMensalEsperado;
     }
 
-    public Double RendimentoMensalEsperado(){
-        return 0.0; // Implementar lógica de cálculo do rendimento esperado
+    public double getRendimentoMensalEsperado() {
+        return rendimentoMensalEsperado;
     }
-    
+
+    @Override
+    public double calcularRendimentoProjetado(double valorInvestido, int dias) {
+        double taxaDiaria = this.rendimentoMensalEsperado / 30.0;
+        return valorInvestido * taxaDiaria * dias;
+    }
 }

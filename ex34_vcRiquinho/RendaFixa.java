@@ -7,13 +7,28 @@ public class RendaFixa extends ProdutosFinanceiros {
     protected LocalDate periodoCarencia; // tempo mínimo antes que o dinheiro possa ser retirado
 
 
-    public RendaFixa(String nome, String descricao, LocalDate periodoCarencia) {
+     private double rendimentoMensal;
+    private int periodoCarenciaDias;
+
+    public RendaFixa(String nome, String descricao, double rendimentoMensal, int periodoCarenciaDias){
         super(nome, descricao);
-        this.periodoCarencia = periodoCarencia;
+        this.rendimentoMensal = rendimentoMensal;
+        this.periodoCarenciaDias = periodoCarenciaDias;
     }
 
-    public Double RendimentoMensalFixo() {
-        return 0.0; // Implementar lógica de cálculo do rendimento fixo
+    public int getPeriodoCarenciaDias() {
+        return this.periodoCarenciaDias;
     }
+    public double getRendimentoMensal() {
+        return this.rendimentoMensal;
+    }
+    
+    @Override
+    public double calcularRendimentoProjetado(double valorInvestido, int dias) {
+        double taxaDiaria = this.rendimentoMensal / 30.0;
+        return valorInvestido * taxaDiaria * dias;
+    }
+
+
 
 }

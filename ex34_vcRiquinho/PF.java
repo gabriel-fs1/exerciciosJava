@@ -1,22 +1,22 @@
 package ex34_vcRiquinho;
 
-import java.util.ArrayList;
 
 public class PF extends Cliente{
     private String cpf;
+    
 
-    public PF(String nome, String email, ArrayList<Contas> contas, String cpf) {
-        super(nome, email, contas);
+    public PF(String nome, String email, String cpf) {
+        super(nome, email);
         this.cpf = cpf;
+        
     }
 
     public String getCpf() {
         return cpf;
     }
 
-    @Override
-    public void criarConta() {
-        
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
-    
+        
 }

@@ -1,29 +1,56 @@
 package ex34_vcRiquinho;
 
+import java.util.List;
 import java.util.ArrayList;
+
 public class ContaInvestimentoAutomatico extends Contas implements Tributavel {
 
-    private Double taxaRendimento;
+     private List<ProdutosFinanceiros> carteira;
     
-    private ArrayList<ProdutosFinanceiros> produtosFinanceiros;
-    
-    public ContaInvestimentoAutomatico(Double saldo, Cliente donoDaConta, Double taxaRendimento) {
-        super(saldo, donoDaConta);
-        this.taxaRendimento = taxaRendimento;
+    public ContaInvestimentoAutomatico(Cliente donoDaConta) {
+        super(donoDaConta);
+        this.carteira = new ArrayList<>();
+    }
+
+    public void adicionarProduto(ProdutosFinanceiros produto) {
+        this.carteira.add(produto);
+    }
+
+    public List<ProdutosFinanceiros> getCarteira() {
+        return this.carteira;
     }
 
     @Override
-    public Double calcularRendimento(int periodoEmDias) {
-        return saldo * (taxaRendimento / 100) * (periodoEmDias / 365.0);
+    public double calcularRendimento(int dias) {
+
+        if(carteira.isEmpty()){
+            return 0.0;
+        }
+        
+        double saldoPorProduto = this.getSaldo()/carteira.size();
+        double rendimentoTotal = 0.0;
+
+        for (ProdutosFinanceiros produto : carteira){
+            rendimentoTotal += produto.calcularRendimentoProjetado(saldoPorProduto, dias);
+        }
+
+        return rendimentoTotal;
     }
 
     @Override
     public double calcularTaxaServico(double rendimentoBruto) {
-        if (donoDaConta instanceof PF) {
-            return rendimentoBruto * 0.001; // Taxa de 0,1% para PF 
-        } else if (donoDaConta instanceof PJ) {
-            return rendimentoBruto * 0.0015; // Taxa de 0,15% para PJ 
+
+        Cliente dono = this.getDonoDaConta();
+
+        if(dono instanceof PF){
+            return rendimentoBruto * 0.001;
+        }else{
+            return rendimentoBruto * 0.0015;
         }
-        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "ContaInvestimentoAutomatico (saldo:" + getSaldo() + ")";
     }
 }
