@@ -1,1 +1,7 @@
-texto aqui
+O sistema protótipo para uma lanchonete se baseia nos conceitos de herança e polimorfismo.
+
+A classe abstrata Prato serve como a base, definindo características comuns para todos os itens do cardápio e um método para o cálculo do preço, que é implementado de forma diferente em cada tipo de prato. As classes Lanche, Pizza e Salgadinho herdam de Prato e implementam suas próprias regras para determinar o preço final.
+
+Para gerenciar o processo de compra, a classe Pedido utiliza um array para armazenar os itens consumidos, além de calcular o total, o troco e gerar a fatura final.
+
+Toda a interação com o usuário, como a criação de novos pedidos, visualização do cardápio e finalização da compra, é feita através de uma interface de console na classe Main.

@@ -1,1 +1,10 @@
-texto aqui
+Uma sugestão para aprimorar o sistema é focar na classe CadastroDePessoas. A troca do array tradicional por um ArrayList da API Collections seria uma melhoria significativa. Isso eliminaria a limitação de um tamanho fixo, já que o ArrayList se expande automaticamente conforme novos cadastros são adicionados. Além disso, a variável qtdAtual se tornaria desnecessária, pois o método .size() do ArrayList já informa a quantidade de elementos, simplificando o código.
+
+Melhorias no Diagrama de Classes e Encapsulamento
+A fim de garantir a integridade dos dados, o diagrama de classes deve ser aprimorado para refletir o encapsulamento. A indicação de que os atributos como nome, salario e codigo são privados (-) é crucial. O acesso e a manipulação desses dados devem ser feitos exclusivamente através de métodos getters e setters, garantindo que o estado interno dos objetos seja controlado.
+
+Classe Data
+Adicionei condições nas datas para impedir que os dias sejam conforme o padrão (Exemplo, impedindo que exista dia 32)
+
+Substituição de ImprimeDados() por toString()
+A função ImprimeDados() na classe deveria ser substituída pelo método toString(). A função atual "amarra" a classe a uma ação específica, a impressão no console, o que limita sua reutilização. Ao implementar o toString(), a responsabilidade da classe se restringe a fornecer uma representação textual de si mesma. Isso oferece maior flexibilidade, pois o código que utiliza o objeto pode decidir o que fazer com a informação retornada, seja imprimir, salvar em um arquivo ou exibir em uma interface gráfica.

@@ -18,7 +18,7 @@ public class Funcionario extends Pessoa {
     }
 
     public Float calculaImposto(){
-        salario = salario - (salario * 0.3f);
+        salario = salario - (salario * 0.03f);
         return salario;
     }
 

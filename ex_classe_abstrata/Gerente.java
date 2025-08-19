@@ -11,7 +11,7 @@ public class Gerente extends Funcionario{
 
     @Override
     public Float calculaImposto() {
-        salario = salario - (salario * 0.5f);
+        salario = salario - (salario * 0.05f);
         return salario;
     }
 
